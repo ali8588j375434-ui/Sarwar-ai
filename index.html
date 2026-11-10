@@ -1,1 +1,91 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarwar AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#0b1020;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ padding:22px;text-align:center;
+ background:#121a30;border-bottom:1px solid #293653;
+}
+.logo{font-size:30px;font-weight:bold;color:#65a9ff}
+header p{color:#aab7d0}
+main{max-width:650px;margin:auto;padding:20px}
+.welcome{text-align:center;margin:55px 0 35px}
+.welcome h1{font-size:27px}
+.welcome p{color:#aab7d0}
+#chat{padding-bottom:110px}
+.msg{
+ padding:14px;margin:12px 0;border-radius:15px;
+ line-height:1.9;white-space:pre-wrap;
+}
+.bot{background:#192744}
+.user{background:#244b80;margin-right:35px}
+.inputbox{
+ position:fixed;bottom:0;left:0;right:0;
+ background:#121a30;padding:14px;
+ display:flex;gap:9px;
+}
+input{
+ flex:1;min-width:0;padding:15px;
+ border-radius:12px;border:1px solid #354566;
+ background:#0b1020;color:white;font-size:16px;
+}
+button{
+ border:0;border-radius:12px;padding:12px 18px;
+ background:#367ef5;color:white;font-size:16px;
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">✦ SARWAR AI</div>
+ <p>دستیار هوشمند شما</p>
+</header>
+<main>
+ <section class="welcome" id="welcome">
+  <h1>سلام! به سرور AI خوش آمدید 👋</h1>
+  <p>امروز چطور می‌توانم به شما کمک کنم؟</p>
+ </section>
+ <div id="chat"></div>
+</main>
+<div class="inputbox">
+ <input id="question" placeholder="پیام خود را بنویسید..." />
+ <button onclick="sendMessage()">ارسال</button>
+</div>
+<script>
+function sendMessage(){
+ const input=document.getElementById('question');
+ const text=input.value.trim();
+ if(!text)return;
+ document.getElementById('welcome').style.display='none';
+ const chat=document.getElementById('chat');
+
+ const user=document.createElement('div');
+ user.className='msg user';
+ user.textContent=text;
+ chat.appendChild(user);
+
+ input.value='';
+
+ const bot=document.createElement('div');
+ bot.className='msg bot';
+ bot.textContent='سلام! پیام شما دریافت شد. برای فعال شدن پاسخ‌های واقعی هوش مصنوعی، باید موتور AI را به Sarwar متصل کنیم.';
+ chat.appendChild(bot);
+
+ window.scrollTo(0,document.body.scrollHeight);
+}
+document.getElementById('question').addEventListener('keydown',function(e){
+ if(e.key==='Enter')sendMessage();
+});
+</script>
+</body>
+</html>
+
